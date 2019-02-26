@@ -8,7 +8,7 @@ def create_automaton_one():
     #S:0,A:1,B:2,C:3,D:4,E:5,F:6
     A.add_initial_state('S')
     A.add_final_state(['F'])
-
+    
     # S:0 transition
     A.add_move(0, 1, 'a')
     A.add_move(0, 4, 'a')
@@ -67,6 +67,9 @@ def create_automaton_two():
     # q6 transition
     
     # q7 transition
+    A2.add_move(7, 6, 'a')
+    A2.add_move(7, 13, 'b')
+
     
     # q8 transition
     A2.add_move(8, 9, 'b')
@@ -91,3 +94,6 @@ def create_automaton_two():
 
     return A2
 
+
+create_automaton_one()
+create_automaton_two()
