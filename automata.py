@@ -76,83 +76,24 @@ class Automaton:
         self.final_states.remove(final_states)
 
     def moves_of_the_state(self, state):
-        moves = []
-        # TODO remove the else stament
-        [moves.append(idx) if len(x) != 0 else '' for idx,
-         x in enumerate(self.matrix[state])]
-        return moves
-        #return [idx if len(x) != 0 else None for idx,x in enumerate(self.matrix[state])]
-
-        # return ([(self.states[x],moves[idx]) for idx,x in enumerate(moves)])
+        
+        return  [idx for idx,x in enumerate(self.matrix[state]) if x]
 
     def moves_to_the_state(self, state):
-        moves = []
-        # TODO remove the else stament
-        [moves.append(idx) if len(self.matrix[idx][state]) != 0 else '' for idx in range(self.number_of_states)]
 
-        return moves
+        return  [idx for idx in range(self.number_of_states) if len(self.matrix[idx][state]) != 0]
+
+
 
     @staticmethod
     def load_automaton(path):
 
-        return pickle.load(open(path, "rb"))
+        return pickle.load( open( path, "rb" ) )
 
 
-def create_automaton_two():
-    A2 = Automaton(14, ['a', 'b'])
-    A2.add_initial_state('q0')
-    A2.add_final_state(['q7'])
-
-    # q0 transition
-    A2.add_move(0, 1, 'a')
-    A2.add_move(0, 8, 'b')
-
-    # q1 transition
-    A2.add_move(1, 2, 'a')
-
-    # q2 transition
-    A2.add_move(2, 3, 'b')
-
-    # q3 transition
-    A2.add_move(3, 4, 'a')
-    A2.add_move(3, 6, 'a')
-    A2.add_move(3, 6, 'b')
-
-    # q4 transition
-    A2.add_move(4, 5, 'b')
-
-    # q5 transition
-    A2.add_move(5, 4, 'a')
-    A2.add_move(5, 6, 'a')
-
-    # q6 transition
-
-    # q7 transition
-
-    # q8 transition
-    A2.add_move(8, 9, 'b')
-
-    # q9 transition
-    A2.add_move(9, 10, 'a')
-
-    # q10 transition
-    A2.add_move(10, 11, 'b')
-    A2.add_move(10, 13, 'b')
-
-    # q11 transition
-    A2.add_move(11, 12, 'a')
-
-    # q12 transition
-    A2.add_move(12, 11, 'b')
-    A2.add_move(12, 13, 'b')
-
-    # q13 transition
-
-    pickle.dump(A2, open("A2.p", "wb"))
-
-    return A2
 
 
-A2 = create_automaton_two()
-array = A2.moves_to_the_state(2)
-print(array)
+
+A2  = Automaton.load_automaton("A2.p")
+print(A2.moves_to_the_state(1))
+
