@@ -18,7 +18,7 @@ class Automaton:
         self.alphabet = alphabet
         self.initial_states = None
         self.final_states = []
-
+    ########## AUTOMATON DEFINITION ############
     def redefine_states_names(self, names):
         if len(names) == len(self.states):
             self.states = np.array([y for y in names])
@@ -74,7 +74,8 @@ class Automaton:
     def delete_final_state(self, final_states):
 
         self.final_states.remove(final_states)
-
+    ######################################################    
+    ########## AUTOMATON INFO ###########################º
     def moves_of_the_state(self, state):
         
         return  [idx for idx,x in enumerate(self.matrix[state]) if x]
@@ -82,18 +83,19 @@ class Automaton:
     def moves_to_the_state(self, state):
 
         return  [idx for idx in range(self.number_of_states) if len(self.matrix[idx][state]) != 0]
-
-
-
+    ######################################################
+    ################ AUTOMATON LOAD ##########################
     @staticmethod
     def load_automaton(path):
 
         return pickle.load( open( path, "rb" ) )
-
+    ######################################################
 
 
 
 
 A2  = Automaton.load_automaton("A2.p")
-print(A2.moves_to_the_state(1))
+print("Desde 1 puedes llegar a : ",A2.moves_of_the_state(7))
+print("A 1 puedes llegar desde : ",A2.moves_to_the_state(7))
 
+print(A2.display_matrix())
