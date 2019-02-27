@@ -19,6 +19,7 @@ class Automaton:
         self.initial_states = None
         self.final_states = []
     ########## AUTOMATON DEFINITION ############
+
     def redefine_states_names(self, names):
         if len(names) == len(self.states):
             self.states = np.array([y for y in names])
@@ -74,28 +75,61 @@ class Automaton:
     def delete_final_state(self, final_states):
 
         self.final_states.remove(final_states)
-    ######################################################    
-    ########## AUTOMATON INFO ###########################º
+    ######################################################
+    # AUTOMATON INFO ###########################º
     def moves_of_the_state(self, state):
-        
-        return  [idx for idx,x in enumerate(self.matrix[state]) if x]
+
+        return [idx for idx, x in enumerate(self.matrix[state]) if x]
 
     def moves_to_the_state(self, state):
 
-        return  [idx for idx in range(self.number_of_states) if len(self.matrix[idx][state]) != 0]
+        return [idx for idx in range(self.number_of_states) if len(self.matrix[idx][state]) != 0]
+
+    def state_accesible(self,state):
+        """
+        Check if a state is accesible this means that it can be reach from the initial state
+        """
+        # TODO
+        return None
+    
+    def state_coaccesible(self,state):
+        """
+        Check if a state is coaccesible this means that a final state can be reach from this state
+        """
+        # TODO
+        return None
+
+    def reduce_automaton(self):
+        """
+        Reduce the Automaton
+        """
+        # TODO
+        pass
+
+    def is_empty(self):
+        """
+        Check if the language accepted by the automaton is empty
+        """
+        # TODO
+        return None
+
+    def is_infinite(self):
+        """
+        Check if the language accepted by the automaton is infinite
+        """
+        # TODO
+        return None
     ######################################################
     ################ AUTOMATON LOAD ##########################
     @staticmethod
     def load_automaton(path):
 
-        return pickle.load( open( path, "rb" ) )
+        return pickle.load(open(path, "rb"))
     ######################################################
 
 
-
-
-A2  = Automaton.load_automaton("A2.p")
-print("Desde 1 puedes llegar a : ",A2.moves_of_the_state(7))
-print("A 1 puedes llegar desde : ",A2.moves_to_the_state(7))
+A2 = Automaton.load_automaton("A2.p")
+print("Desde 1 puedes llegar a : ", A2.moves_of_the_state(7))
+print("A 1 puedes llegar desde : ", A2.moves_to_the_state(7))
 
 print(A2.display_matrix())
